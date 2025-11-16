@@ -2,24 +2,23 @@ import { useState } from "react";
 
 import Header from "./components/Header";
 import Input from "./components/Input";
-
-function handleChange(e) {
-  const inputValue = e.target.value;
-  const inputName = e.target.name;
-
-  console.log("old: ", investmentValues);
-  setInvestemtValues((prev) => ({ ...prev, [inputName]: +inputValue }));
-  console.log("new: ", investmentValues);
-}
+import Result from "./components/Result";
 
 function App() {
   const [investmentValues, setInvestemtValues] = useState({
-    "initial investment": 0,
-    "annual investment": 0,
-    "expected return": 0,
-    duration: 0,
+    "initial investment": "",
+    "annual investment": "",
+    "expected return": "",
+    duration: "",
   });
 
+  function handleChange(e) {
+    const inputValue = e.target.value;
+    const inputName = e.target.name;
+
+    console.log("investment state: ", investmentValues);
+    setInvestemtValues((prev) => ({ ...prev, [inputName]: +inputValue }));
+  }
   return (
     <>
       <Header />
@@ -43,9 +42,14 @@ function App() {
             inputName="expected return"
             investmentValues={investmentValues}
           ></Input>
-          <Input handleChange={handleChange} inputName="duration"></Input>
+          <Input
+            handleChange={handleChange}
+            inputName="duration"
+            investmentValues={investmentValues}
+          ></Input>
         </div>
       </div>
+      <Result investmentValues={investmentValues} />
     </>
   );
 }

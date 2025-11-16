@@ -1,13 +1,6 @@
-import { formatter, calculateInvestmentResults } from "../util/investment";
+import { calculateInvestmentResults, formatter } from "../util/investment";
 export default function Input({ inputName, handleChange, investmentValues }) {
-  function format(e) {
-    let value = e.target.value;
-    value = formatter.format(value);
-    return value;
-  }
-
-  const inputValue = format(investmentValues[inputName]);
-
+  const inputValue = investmentValues[inputName];
   return (
     <p>
       <label htmlFor={inputName}>{inputName}</label>
