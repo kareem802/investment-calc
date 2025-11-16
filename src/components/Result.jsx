@@ -17,26 +17,30 @@ export default function Result({ investmentValues }) {
   }
   return (
     <table id="result">
-      <tr>
-        <th>Year</th>
-        <th>Investment Value</th>
-        <th>Interest (Year)</th>
-        <th>Total Interest</th>
-        <th>Invested Capital</th>
-      </tr>
-      {investmentResults &&
-        investmentResults.map((result) => {
-          console.log(result.year);
-          return (
-            <tr>
-              <td>{result.year}</td>
-              <td>{result.year}</td>
-              <td>{result.interest}</td>
-              <td>{result.year}</td>
-              <td>{result.year}</td>
-            </tr>
-          );
-        })}
+      <thead id="thead">
+        <tr>
+          <th>Year</th>
+          <th>Investment Value</th>
+          <th>Interest (Year)</th>
+          <th>Total Interest</th>
+          <th>Invested Capital</th>
+        </tr>
+      </thead>
+      <tbody id="tbody">
+        {investmentResults &&
+          investmentResults.map((result) => {
+            console.log(result.year);
+            return (
+              <tr>
+                <td>{result.year}</td>
+                <td>{result.year}</td>
+                <td>{result.interest}</td>
+                <td>{result.year}</td>
+                <td>{result.year}</td>
+              </tr>
+            );
+          })}
+      </tbody>
     </table>
   );
 }
