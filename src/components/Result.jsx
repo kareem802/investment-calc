@@ -8,12 +8,12 @@ export default function Result({ investmentValues }) {
     investmentValues["expected return"] &&
     investmentValues["duration"]
   ) {
-    investmentResults = calculateInvestmentResults(
-      investmentValues["initial investment"],
-      investmentValues["annual investment"],
-      investmentValues["expected return"],
-      investmentValues["duration"]
-    );
+    investmentResults = calculateInvestmentResults({
+      initialInvestment: investmentValues["initial investment"],
+      annualInvestment: investmentValues["annual investment"],
+      expectedReturn: investmentValues["expected return"],
+      duration: investmentValues["duration"],
+    });
   }
   return (
     <table id="result">
@@ -28,18 +28,15 @@ export default function Result({ investmentValues }) {
       </thead>
       <tbody id="tbody">
         {investmentResults &&
-          investmentResults.map((result) => {
-            console.log(result.year);
-            return (
-              <tr>
-                <td>{result.year}</td>
-                <td>{result.year}</td>
-                <td>{result.interest}</td>
-                <td>{result.year}</td>
-                <td>{result.year}</td>
-              </tr>
-            );
-          })}
+          investmentResults.map((result) => (
+            <tr key={result.year}>
+              <td>{result.year}</td>
+              <td>{formatter.format(result.valueEndOfYear)}</td>
+              <td>{formatter.format(result.interest)}</td>
+              <td>{formatter.format(result.totalInterest)}</td>
+              <td>{formatter.format(result.investedCapital)}</td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );
